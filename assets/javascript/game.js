@@ -12,6 +12,7 @@ var answers= ["honda", "hyundai", "lexus", "fiat"]
 
 var alphabet= ("abcdefghijklmnopqrstuvwxyz").split("");
 
+
 console.log(alphabet)
 //     q1: ["honda"],
 //     q2: ["hyundai"],
@@ -19,6 +20,8 @@ console.log(alphabet)
 //     q4: ["fiat"]
 // }
 var answer = answers[Math.floor(Math.random() * answers.length)];
+
+
 
 var score = 0;
 
@@ -29,6 +32,12 @@ for (var i=0; i<answer.length; i++) {
     answerArray[i] = "_";
     document.getElementById("word-blanks").innerHTML = answerArray
 }
+
+var remainingLetters = answer.length;
+
+
+
+
 
 // for (var j=0; j<answer.length; j++) {
     // System.out.print(answerArray[j]);
@@ -63,24 +72,30 @@ for (var i=0; i<answer.length; i++) {
 
 
 
-document.onkeyup = function(event) {
-    if (questionIndex === answers.length) {
+ document.onkeyup = function(event) {
+     if (questionIndex === answers.length) {
         return;
     }
     var userInput = String.fromCharCode(event.which).toLowerCase();
 
 
-//for (var i=0; i<correctAnswers.length; i++) {
+// //for (var i=0; i<correctAnswers.length; i++) {
   
 
     
        
       if (answer.indexOf(userInput) > -1) {
           
+        for (var j=0; j<answer.length; j++) {
+            if (answer[j] === userInput) {
+                answerArray[j] = userInput;
+                document.getElementById("word-blanks").innerHTML = answerArray
+            }}
+        
         // if (userInput === answer[i]) {
-            var str= document.getElementById("word-blanks").innerHTML
-            var res = str.replace(/_/g, userInput)
-            document.getElementById("word-blanks").innerHTML = res
+            // var str= document.getElementById("word-blanks").innerHTML
+           // var res = str.replace(answerArray[i], userInput)
+            // document.getElementById("word-blanks").innerHTML = res
         
             
             
@@ -88,14 +103,15 @@ document.onkeyup = function(event) {
             // updateScore()
            console.log("it is correct")
 
-           }
+            }
+        
         else {
            var newDiv = $("<div>" + "wrong:" + userInput +  "</div>")
            $("#wrong-guesses").append(newDiv)
 
         }
         
-    }
+     }
 
 
         // questionIndex++;

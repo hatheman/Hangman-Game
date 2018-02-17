@@ -39,8 +39,8 @@
           <div class="panel-body">
             <!-- This h3 section called wordblanks is what we'll be replacing with letters as the user guesses.
 						Pay particular attention to the id called ***wordblanks***. We'll be referencing this in the JavaScript. -->
-            <h3 id="word-blanks" type="text" >_ _ _ _ _ _</h3>
-          </div>
+            <h3 id="word-blanks">_ _ _ _ _ _</h3>
+        </div>
         </div>
 
         <!-- Second Panel: Holds the list of Wrong User Guesses. -->
@@ -59,7 +59,7 @@
 
             <!-- This span called guessesLeft is where we will be dumping the number of guesses left.
 						Pay attention to the id called ****guessesLeft****. We'll be referencing this in the JavaScript. -->
-            <strong>Guesses Left: </strong> <span id="guesses-left">9</span>
+            <strong>Guesses Left: </strong> <span id="guesses-left" input type="range" min="0">9</span>
           </div>
         </div>
 
@@ -84,7 +84,10 @@
         </div>
       </div>
     </div>
-  </div>
+    
+</form>
+</div>
+  
 
   <!-- Adds a link to the javascript file. Loaded at the bottom so it waits for the HTML content to display first.
 	If you put this at the top it will crash, because the HTML IDs won't exist yet.-->

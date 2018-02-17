@@ -29,7 +29,7 @@ var decScore = 0;
 
 var questionIndex = 0; 
 
-var guesses = document.querySelector("#guesses-left").innerHTML
+var guesses = 9
 
 //get underscore to represent word
 var answerArray = [];
@@ -62,6 +62,7 @@ var remainingLetters = answer.length;
 
 
 
+
         
 
 //     }
@@ -69,7 +70,7 @@ var remainingLetters = answer.length;
 //         document.querySelector("#win-counter").innerHTML = "Final Score: " + score;
 //      }
 //  }
-function winScore(){
+ function winScore(){
     document.querySelector("#win-counter").innerHTML = incScore
     if( incScore < 0) {
         incScore = 0
@@ -89,6 +90,10 @@ function updateGuesses() {
     }
     }
 
+//     }
+
+
+
 
 // updateScore();
 
@@ -98,7 +103,8 @@ function updateGuesses() {
 //renderQuestion()
 
 
-document.onkeyup = function(event) {
+function renderGame() {
+ document.onkeyup = function(event) {
     //  if (questionIndex === answer.length) {
         // return;
     // }
@@ -106,39 +112,23 @@ document.onkeyup = function(event) {
 
 
 // //for (var i=0; i<correctAnswers.length; i++) {
-  if (remainingLetters === 0) {
-    alert("i won")
-    incScore++ 
-    winScore()
-    
-    return;
-    
-      }
-    if (guesses === 0) {
-        alert("I lost")
-        decScore++
-        loseScore()
-        return;
-    }
+  
 //input characters to underscore
+
     if (alphabet.indexOf(userInput) > -1) {
-        guesses--
-        updateGuesses()
-        
-        var index = alphabet.indexOf(userInput);
-        if (index >= 0) {
-        alphabet.splice( index, 1 );}
+       
 
-
-        
        if (answer.indexOf(userInput) > -1) {
           
         for (var j=0; j<answer.length; j++) {
             if (answer[j] === userInput) {
                 answerArray[j] = userInput;
                 document.getElementById("word-blanks").innerHTML = answerArray
+                incScore++ 
+                remainingLetters --
+                winScore()
                 
-                remainingLetters--
+                }
                 
                 
             }}
@@ -153,21 +143,27 @@ document.onkeyup = function(event) {
             // updateScore()
            console.log("it is correct")
 
-            }
+        }
         
-        else {
+            else {
            var newDiv = $("<div>" + userInput +  "</div>")
            $("#wrong-guesses").append(newDiv)
-           
-           
+           decScore++
+           loseScore()
 
         }
         questionIndex++
+
      }
-   
-    }
-    function myFunction() {
-        document.getElementById("myForm").reset();}
+        
+
+     }
+    
+    renderGame()
+
+
+
+    
     //renderQuestion()
     
 
